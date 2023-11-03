@@ -22,6 +22,7 @@ const App = () => {
       <div className="card">
         <div className="search">
           <input
+            placeholder="Start Search"
             type="text"
             onChange={(e) => setSearch(e.target.value)}
           ></input>
