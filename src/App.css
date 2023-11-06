@@ -52,7 +52,8 @@ input {
   flex-direction: column;
   background-color: azure;
   width: 400px;
-  aspect-ratio: 9/16;
+  height: 70vh;
+  min-height: 400px;
   border-radius: 20px;
 }
 
