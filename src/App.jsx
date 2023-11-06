@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import notFoundImg from "./images/no-results.png";
 
@@ -7,6 +7,22 @@ const App = () => {
     key: "9cff2f128262499f550e23c3040e632b",
     base: "https://api.openweathermap.org/data/2.5/",
   };
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    function showPosition(position) {
+      let latitude = position.coords.latitude;
+      let longitude = position.coords.longitude;
+      fetch(
+        `${api.base}/weather?lat=${latitude}&lon=${longitude}&units=metric&APPID=${api.key}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setData(data);
+          console.log(data);
+        });
+    }
+  }, []);
+
   const [search, setSearch] = useState("");
   const [data, setData] = useState({});
   function searchPress() {
@@ -19,6 +35,7 @@ const App = () => {
   }
   return (
     <div className="container">
+      <p id="demo"></p>
       <div className="card">
         <div className="search">
           <input
